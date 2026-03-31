@@ -1,0 +1,53 @@
+<div class="container-fluid vh-100 d-flex align-items-center justify-content-center bg-light">
+    <div class="card shadow" style="width: 400px;">
+
+        <div class="card-header bg-primary text-white text-center py-3">
+            <h4 class="mb-0">🔐 Iniciar Sesión</h4>
+        </div>
+
+        <div class="card-body p-4">
+
+            <!-- Mensaje de error -->
+            <div class="alert alert-danger" *ngIf="error_js">
+                {{ error_js }}
+            </div>
+
+            <!-- Formulario de login -->
+            <form (ngSubmit)="iniciarSesion()">
+
+                <!-- Campo usuario -->
+                <div class="mb-3">
+                    <label class="form-label">Usuario</label>
+                    <input
+                        type="text"
+                        class="form-control"
+                        placeholder="Ingresa tu usuario"
+                        [(ngModel)]="usuario_js"
+                        name="usuario">
+                </div>
+
+                <!-- Campo contraseña -->
+                <div class="mb-3">
+                    <label class="form-label">Contraseña</label>
+                    <input
+                        type="password"
+                        class="form-control"
+                        placeholder="Ingresa tu contraseña"
+                        [(ngModel)]="password_js"
+                        name="password">
+                </div>
+
+                <!-- Botón de submit -->
+                <div class="d-grid">
+                    <button
+                        type="submit"
+                        class="btn btn-primary"
+                        [disabled]="cargando_js">
+                        {{ cargando_js ? 'Iniciando sesión...' : 'Iniciar Sesión' }}
+                    </button>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>

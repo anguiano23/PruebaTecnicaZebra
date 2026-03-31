@@ -1,0 +1,94 @@
+<div class="container py-4">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow">
+
+                <!-- Encabezado -->
+                <div class="card-header bg-primary text-white py-3">
+                    <h4 class="mb-0">
+                        {{ esEdicion_js ? '✏️ Editar Cliente' : '➕ Nuevo Cliente' }}
+                    </h4>
+                </div>
+
+                <div class="card-body p-4">
+
+                    <!-- Indicador de carga -->
+                    <div class="text-center py-3" *ngIf="cargando_js">
+                        <div class="spinner-border text-primary"></div>
+                        <p class="mt-2">{{ esEdicion_js ? 'Cargando datos...' : 'Guardando...' }}</p>
+                    </div>
+
+                    <!-- Mensaje de error -->
+                    <div class="alert alert-danger" *ngIf="error_js">
+                        {{ error_js }}
+                    </div>
+
+                    <!-- Formulario -->
+                    <form (ngSubmit)="guardarCliente()" *ngIf="!cargando_js">
+
+                        <!-- Nombre -->
+                        <div class="mb-3">
+                            <label class="form-label">Nombre</label>
+                            <input
+                                type="text"
+                                class="form-control"
+                                placeholder="Nombre completo"
+                                [(ngModel)]="nombre_js"
+                                name="nombre">
+                        </div>
+
+                        <!-- Correo -->
+                        <div class="mb-3">
+                            <label class="form-label">Correo Electrónico</label>
+                            <input
+                                type="email"
+                                class="form-control"
+                                placeholder="correo@ejemplo.com"
+                                [(ngModel)]="correo_js"
+                                name="correo">
+                        </div>
+
+                        <!-- Teléfono -->
+                        <div class="mb-3">
+                            <label class="form-label">Teléfono</label>
+                            <input
+                                type="text"
+                                class="form-control"
+                                placeholder="10 dígitos"
+                                [(ngModel)]="telefono_js"
+                                name="telefono">
+                        </div>
+
+                        <!-- Estatus -->
+                        <div class="mb-4">
+                            <label class="form-label">Estatus</label>
+                            <select
+                                class="form-select"
+                                [(ngModel)]="estatus_js"
+                                name="estatus">
+                                <option value="Activo">Activo</option>
+                                <option value="Inactivo">Inactivo</option>
+                            </select>
+                        </div>
+
+                        <!-- Botones -->
+                        <div class="d-flex gap-2">
+                            <button
+                                type="submit"
+                                class="btn btn-primary flex-fill">
+                                {{ esEdicion_js ? '💾 Actualizar' : '💾 Guardar' }}
+                            </button>
+                            <button
+                                type="button"
+                                class="btn btn-outline-secondary flex-fill"
+                                (click)="cancelar()">
+                                ❌ Cancelar
+                            </button>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
